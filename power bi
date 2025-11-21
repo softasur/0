@@ -1,0 +1,211 @@
+Practical 5: Connecting and Extracting Data from Various 
+Sources in Power BI
+
+
+Step 1: Connecting to a CSV File
+1. Open Power BI Desktop.
+2. Click on ‘Home’ → ‘Get Data’ → ‘Text/CSV’.
+3. Browse and select the file “SalesData_PowerBI.csv”.
+4. Power BI displays a preview of the data.
+5. Click ‘Load’ to import it into your Power BI workspace.
+Step 2: Connecting to an Excel File
+1. Go to ‘Home’ → ‘Get Data’ → ‘Excel’.
+2. Choose the file “Employees_PowerBI.xlsx”.
+3. In the Navigator panel, select the worksheet “EmployeeData”.
+4. Click ‘Load’ to import the data.
+Step 3: Connecting to a JSON File
+1. Click ‘Get Data’ → ‘JSON’.
+2. Select the file “Online_Orders_PowerBI.json”.
+3. Power BI automatically converts JSON into a tabular structure.
+4. Click ‘Load’ to import the data.
+Step 4: Data Transformation and Cleaning (Power Query Editor)
+Click ‘Transform Data’ to open Power Query Editor.
+i. Perform the following operations in Power Query Editor:
+1. **Remove Duplicates:**
+ - Go to the ‘Home’ tab → Click ‘Remove Rows’ → ‘Remove Duplicates’.
+2. **Handle Missing Values:**
+ - Go to the ‘Transform’ tab → Choose ‘Replace Values’ → Replace nulls with 
+appropriate values (e.g., 0 or “Unknown”).
+3. **Rename Columns:**
+ - Double-click a column header and rename it (e.g., change “Unit_Price” to “Price
+per Unit”).
+4. **Change Data Types:**
+ - Select a column → From the ribbon, choose the correct data type (Date, Text, 
+Whole Number, Decimal, etc.).
+5. **Filter Data:**
+ - Use column drop-down arrows to filter records (e.g., Region = “North”).
+6. **Reorder Columns:**
+ - Drag columns to adjust the order for better readability.
+ii. You can combine multiple datasets:
+1. **Merge Queries:**
+ - Suppose you have another file with ‘Product Details’.
+ - Go to ‘Home’ → ‘Merge Queries’ → Select common column ‘Product’.
+ - Choose ‘Left Join’ or ‘Inner Join’ to merge based on matching product names.
+2. **Append Queries:**
+ - To stack multiple files (like monthly sales data), go to ‘Home’ → ‘Append Queries’.
+ - Select two or more datasets with similar columns.
+Step 5: Pivot and Unpivot Data
+1. To Pivot: Select a column → Click ‘Transform’ → ‘Pivot Column’ → Choose aggregation 
+
+
+
+
+
+
+Practical 6: Performing Calculations and Creating 
+Parameters in Power BI
+
+Step 1: Import the Dataset
+1. Open Power BI Desktop.
+2. Go to ‘Home’ → ‘Get Data’ → Select ‘Text/CSV’.
+3. Locate and select the file 'student_performance_data.csv'.
+4. Click on ‘Load’ to import the data into Power BI.
+Step 2: Perform Data Transformation
+1. Click on ‘Transform Data’ → Power Query Editor opens.
+2. Remove unnecessary columns (if any) by selecting the column header → ‘Remove 
+Columns’.
+3. Rename columns: Right-click on the column name → ‘Rename’.
+4. Change data types for numeric columns such as Attendance_% and Scores to ‘Decimal 
+Number’.
+5. Replace missing or incorrect values (if any) using ‘Transform’ → ‘Replace Values’.
+6. Add a new column ‘Final_Result’ based on Total_Score using the formula:
+ • Go to ‘Add Column’ → ‘Custom Column’.
+ • Formula: if [Total_Score] >= 75 then "Distinction" else if [Total_Score] >= 60 then "First 
+Class" else "Pass".
+7. Click ‘Close & Apply’ to save transformations.
+Step 3: Create Calculated Columns
+1. In Data View, click on ‘Modeling’ tab → ‘New Column’.
+2. Add the following calculated columns using DAX formulas:
+ • Percentage_Score = ([Total_Score] / 100) * 100
+ • Attendance_Status = IF([Attendance_%] >= 75, "Regular", "Irregular")
+3. These columns help visualize how attendance and total scores affect performance.
+Step 4: Create Parameters in Power BI
+1. Go to ‘Home’ → ‘Manage Parameters’ → ‘New Parameter’.
+2. Example: Create a parameter ‘Min_Attendance’.
+ • Name: Min_Attendance
+ • Type: Decimal Number
+ • Suggested Values: Any value (for dynamic input)
+ • Default Value: 75
+3. Use this parameter in Power Query to filter students dynamically:
+ • Filter rows where [Attendance_%] > Min_Attendance.
+4. Apply and load the data again.
+Step 5: Create Visualizations
+1. In Report View, create charts to visualize performance:
+ • Bar Chart: Average Total Score by Course.
+ • Pie Chart: Distribution of Result Categories (Distinction, First Class, Pass).
+ • Slicer: Use Min_Attendance parameter to filter students interactively.
+2. Format visuals for clarity and presentation.
+column.
+2. To Unpivot: Select columns → Click ‘Transform’ → ‘Unpivot Columns’.
+3. This reshapes your data into a more analytical format.
+Step 6: Visualization
+1. Drag and drop fields from the ‘Fields’ pane onto the report canvas.
+2. Choose visual types such as Bar Chart, Pie Chart, or Table.
+3. Create relationships between tables in the ‘Model’ view.
+4. Save your Power BI project (.pbix).
+
+
+
+
+
+
+
+Practical 7: Designing Power BI Dashboards for Different 
+Displays and Devices
+
+
+Step 1: Import Data into Power BI
+1. Open Power BI Desktop.
+2. Click on ‘Home’ → ‘Get Data’ → Select ‘Text/CSV’.
+3. Locate and select the file 'student_performance_data.csv'.
+4. Click ‘Load’ to import the dataset.
+Step 2: Perform Data Transformation
+1. Click on ‘Transform Data’ → Power Query Editor opens.
+2. Verify that numeric fields such as Attendance_% and Scores are set to proper data types.
+3. Add a custom column for student classification using:
+ if [Total_Score] >= 75 then "Distinction" else if [Total_Score] >= 60 then "First Class" else 
+"Pass".
+4. Rename this column as ‘Result_Category’.
+5. Click on ‘Close & Apply’ to save and return to the main interface.
+Step 3: Create Visualizations
+1. In Report View, create the following visuals:
+ • Clustered Bar Chart – Average Total_Score by Course.
+ • Pie Chart – Distribution of Result_Category.
+ • Card Visual – Average Attendance_%.
+ • Line Chart – Average Total_Score by Semester.
+2. Add slicers for ‘Course’ and ‘Gender’ for interactive filtering.
+3. Format visuals (titles, legends, colors) for a clean and professional look.
+Step 4: Arrange the Dashboard Layout
+1. Place KPIs (Cards) at the top for key metrics.
+2. Add charts in a logical order:
+ • Middle section – Bar and Pie Charts.
+ • Bottom – Line Chart (Trend over Semesters).
+3. Use alignment tools to create a balanced dashboard.
+Step 5: Create Mobile Layout
+1. Go to ‘View’ → Select ‘Mobile Layout’.
+2. The mobile design canvas appears.
+3. Drag and drop key visuals (Cards, Bar Chart, Pie Chart) vertically to fit small screens.
+4. Simplify layout by removing less important visuals for mobile view.
+5. Preview layout for both phone and tablet views.
+Step 6: Add Interactivity
+1. Add slicers and filters for Gender and Course.
+2. Enable Tooltips for charts to show Attendance_% and Exam_Score on hover.
+3. Create a parameter using ‘What If Analysis’:
+ • Modeling → New Parameter → Numeric Range (e.g., Minimum Score = 50 to 100).
+ • Add the parameter as a slicer for dynamic filtering of high-performing students.
+
+
+
+
+
+
+ Practical 8: Creating Dashboards and Storytelling using 
+Power BI
+
+
+Step 1: Importing Data into Power BI
+1. Open Power BI Desktop.
+2. Click ‘Get Data’ → Choose ‘Text/CSV’.
+3. Select and load the student_performance_data.csv file.
+4. Verify that the data is correctly imported and visible in the Data View.
+Step 2: Data Transformation
+1. Click ‘Transform Data’ to open Power Query Editor.
+2. Remove unnecessary columns, if any.
+3. Create a calculated column 'Result_Category' using the formula:
+ if [Total_Score] >= 75 then "Distinction" else if [Total_Score] >= 60 then "First Class" else 
+"Pass"
+4. Correct data types (e.g., numeric for scores, text for Course).
+5. Click ‘Close & Apply’.
+Step 3: Creating Key Visuals
+1. In Report View, add visuals:
+ • Clustered Column Chart: Average Total_Score by Course
+ • Donut Chart: Result_Category distribution
+ • Card Visuals: Total Students, Average Attendance_%
+ • Line Chart: Average Total_Score by Semester
+ • Slicer: Filter by Gender or Course
+Step 4: Designing Dashboard Layout
+1. Rename the page as ‘Dashboard’.
+2. Arrange visuals logically – KPIs on top, charts in the middle, slicers on the right.
+3. Add a title: ‘Student Performance Dashboard’.
+4. Use Format → Align and Distribute for uniform spacing.
+Step 5: Applying Storytelling Techniques
+1. Add new pages for detailed storytelling, e.g.:
+ • Page 1: Overview
+ • Page 2: Course Analysis
+ • Page 3: Individual Performance
+2. Use text boxes to write insights like “Students in IT course show higher project scores”.
+3. Create Bookmarks for each page or insight view.
+4. Add navigation buttons using ‘Insert → Buttons → Bookmark Navigator’.
+5. Enable Page Navigation using Action settings for buttons.
+Step 6: Adding Interactivity
+1. Add Drill-Through pages for student-wise analysis.
+2. Use filters and slicers for user-driven exploration.
+3. Use DAX measures for dynamic insights, e.g.:
+ Average_Score = AVERAGE(student_performance_data[Total_Score])
+4. Add Tooltips to charts to display Attendance_% and Exam_Score.
+Step 7: Building a Story Dashboard
+1. Combine visuals and insights across multiple pages.
+2. Add an introductory “story” page describing data purpose.
+3. Use consistent colors and themes.
+4. Include arrows or navigation buttons to move between story pages.
+5. Create a logical narrative — from Overview → Deep Dive → Summary Insights.
