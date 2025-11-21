@@ -17,6 +17,12 @@ Attendance_% > Min_Attendance
 
 
 
+practical 7 :  if [Total_Score] >= 75 then "Distinction" 
+else if [Total_Score] >= 60 then "First Class"
+else "Pass"
+
+
+
 
 
 
