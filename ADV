@@ -131,5 +131,106 @@ Practical 3:  Read Data from Different File Formats (CSV, JSON,
 XML, HTML), Check for Missing & Outlier Values, and Handle 
 Them Using Python.
 
+run this in terminal :   pip install pandas numpy matplotlib seaborn lxml beautifulsoup4
+
+
 code:
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+plt.style.use('seaborn-v0_8')
+
+df_csv = pd.read_csv('student_data.csv')
+df_json = pd.read_json('student_data.json')
+df_xml = pd.read_xml('student_data.xml')
+df_html = pd.read_html('student_data.html')[0]
+
+print("Data read successfully from all formats!\n ")
+print("CSV Data:\n ", df_csv, "\n ")
+
+print("Missing Value Check:")
+print(df_csv.isnull().sum())
+
+df_csv['Marks'].fillna(df_csv['Marks'].mean(), inplace=True)
+print("\n Missing values handled by replacing with mean.\n ")
+print(df_csv)
+
+Q1 = df_csv['Marks'].quantile(0.25)
+Q3 = df_csv['Marks'].quantile(0.75)
+IQR = Q3 - Q1
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+
+print(f"\n IQR Range: {lower:.2f} to {upper:.2f}")
+
+outliers = df_csv[(df_csv['Marks'] < lower) | (df_csv['Marks'] > upper)]
+print("\n Outliers Detected:\n ", outliers)
+
+df_csv['Marks'] = np.where(df_csv['Marks'] > upper, upper,
+ np.where(df_csv['Marks'] < lower, lower, df_csv['Marks']))
+
+print("\n Outliers handled using IQR capping method.\n ")
+print(df_csv)
+
+fig, ax = plt.subplots(1, 2, figsize=(10,4))
+sns.boxplot(y='Marks', data=pd.read_csv('student_data.csv'), ax=ax[0])
+ax[0].set_title("Before Outlier Handling")
+sns.boxplot(y='Marks', data=df_csv, ax=ax[1])
+ax[1].set_title("After Outlier Handling")
+plt.show()
+
+sns.heatmap(df_csv.isnull(), cbar=False, cmap='Reds')
+plt.title("Missing Value Heatmap (After Cleaning)")
+plt.show()
+
+df_csv.to_csv('cleaned_student_data.csv', index=False)
+print("Cleaned data saved to 'cleaned_student_data.csv'")
+
+
+
+
+
+
+
+Practical 4: Reshaping Hierarchical Data and Pivoting 
+DataFrame
+
+paste in terminal :   pip install pandas seaborn matplotlib
+
+
+code:
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame({
+    'Name': ['John', 'Jane', 'Alice', 'Bob'],
+    'Age': [22, 21, 23, 20],
+    'Major': ['IT', 'CS', 'IT', 'CS']
+})
+
+df.to_csv('student_data.csv', index=False)
+df.to_json('student_data.json', orient='records')
+
+df_json = pd.read_json('student_data.json')
+
+major_counts = df_json['Major'].value_counts()
+sns.barplot(x=major_counts.index, y=major_counts.values)
+
+plt.xlabel('Majors')
+plt.ylabel('Number of Students')
+plt.title('Students per Major')
+plt.xticks(rotation=45)
+
+plt.show()
+
+
+
+
+
+
+
 
