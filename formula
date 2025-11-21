@@ -4,6 +4,16 @@ else "Pass"
 
 
 
+Percentage_Score = ([Total_Score] / 100) * 100
+
+
+Attendance_Status = IF([Attendance_%] >= 75, "Regular", "Irregular")
+
+
+
+parameter
+
+Attendance_% > Min_Attendance
 
 
 
