@@ -1,0 +1,12 @@
+if [Total_Score] >= 75 then "Distinction"
+else if [Total_Score] >= 60 then "First Class"
+else "Pass"
+
+
+
+
+
+
+
+
+
