@@ -1,0 +1,135 @@
+Practical 1: Create one-dimensional data using series and 
+perform various operations on it.
+
+
+code:
+
+import pandas as pd
+
+data_list = [10, 20, 30, 40, 50]
+series1 = pd.Series(data_list)
+print(series1)
+
+data_dict = {'a': 100, 'b': 200, 'c': 300}
+series2 = pd.Series(data_dict)
+print(series2)
+
+print(series1[2])
+print(series2['b'])
+
+print("Values:", series1.values)
+print("Index:", series1.index)
+print("Data Type:", series1.dtype)
+print("Shape:", series1.shape)
+
+print(series1 + 5)
+print(series1 * 2)
+
+print("Sum:", series1.sum())
+print("Mean:", series1.mean())
+print("Max:", series1.max())
+print("Min:", series1.min())
+print("Standard Deviation:", series1.std())
+
+print(series1[series1 > 25])
+
+series1[1] = 99
+print(series1)
+
+series3 = pd.Series([1, 2, None, 4])
+print(series3)
+print("Is null:", series3.isnull())
+print("Not null:", series3.notnull())
+
+print(series3.fillna(0))
+print(series3.dropna())
+
+
+
+
+
+
+
+
+
+Practical No 2: Create Two-dimensional data with the help          
+of data frames and perform different operations on it.
+
+note :  Run these commands in terminal or notebook:
+pip install pandas
+pip install numpy
+
+code:
+
+import pandas as pd
+import numpy as np
+
+data = {
+    'Student_ID': [101, 102, 103, 104, 105],
+    'Name': ['Asha', 'Rohan', 'Meena', 'Vikas', 'Tina'],
+    'Subject': ['Maths', 'Science', 'English', 'Maths', 'Science'],
+    'Marks': [85, 90, 78, 88, 92],
+    'Attendance (%)': [95, 88, 80, 92, 85]
+}
+
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+
+print("\n First 3 Rows:")
+print(df.head(3))
+
+print("\n Last 2 Rows:")
+print(df.tail(2))
+
+print("\n DataFrame Info:")
+print(df.info())
+
+print("\n Access Marks Column:")
+print(df['Marks'])
+
+print("\n Access Name and Subject Columns:")
+print(df[['Name', 'Subject']])
+
+print("\n Access 2nd and 3rd Rows:")
+print(df.iloc[1:3])
+
+df['Grade'] = ['A', 'A+', 'B', 'A', 'A+']
+print("\n DataFrame after adding 'Grade' column:")
+print(df)
+
+df.loc[df['Marks'] < 80, 'Grade'] = 'C'
+print("\n Updated Grades where Marks < 80:")
+print(df)
+
+df = df.drop('Attendance (%)', axis=1)
+print("\n DataFrame after dropping Attendance column:")
+print(df)
+
+high_scorers = df[df['Marks'] > 85]
+print("\n Students with Marks > 85:")
+print(high_scorers)
+
+sorted_df = df.sort_values(by='Marks', ascending=False)
+print("\n DataFrame Sorted by Marks (Descending):")
+print(sorted_df)
+
+print("\n Statistical Summary of Numeric Columns:")
+print(df.describe())
+
+df.to_csv("student_data.csv", index=False)
+print("\n DataFrame exported to 'student_data.csv'")
+
+
+
+
+
+
+
+
+Practical 3:  Read Data from Different File Formats (CSV, JSON, 
+XML, HTML), Check for Missing & Outlier Values, and Handle 
+Them Using Python.
+
+code:
+
